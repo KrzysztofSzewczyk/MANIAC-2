@@ -1,0 +1,3 @@
+materialistic_engine.o: materialistic_engine.c /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

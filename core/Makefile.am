@@ -1,2 +1,2 @@
 bin_PROGRAMS = core
-core_SOURCES = main move board_state engine materialistic_engine move_checker
+core_SOURCES = main.c move.c board_state.c engine.c materialistic_engine.c move_checker.c
