@@ -1,0 +1,46 @@
+
+* How to contribute to MANIAC-2?
+
+** The MANIAC-2 repository
+
+MANIAC-2 uses Git for debelopment. To configure git, please
+run the following on your machine, tweaking accordingly:
+
+	git config --global user.name 'John Doe'
+	git config --global user.email 'chessfan@hotmail.com'
+
+The following shell commands will build and run MANIAC-2:
+
+	git clone https://github.com/kspalaiologos/MANIAC-2.git
+	cd MANIAC-2
+	./configure
+	make
+
+** Getting ready
+
+The discussion about development lies mostly in the issues and
+pull requests tab. You can develop and commit changes in your own copy of
+the repository, and discuss proposed changes in the issues and pull
+requests tab. Frequent contributors may be granted write access to the
+repository.
+
+Bug reports, fixes, feature requests and patches shall be filed under issues tab
+respectively.
+
+** Document your changes
+
+As you finish writing code and patching the existing codebase, please leave
+doxygen comments about newly created methods and modify the patched ones accordingly.
+
+** Test your patches
+
+As you are done testing on your own and automatic branch tests pass, you can ask
+to merge your pull request.
+
+** Commit messages
+
+Just make them meaningful :)
+
+** About this document
+
+Inspired by GNU Emacs contributing guidelines.

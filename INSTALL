@@ -1,0 +1,5 @@
+
+Configure and make the project:
+
+./configure
+make all
