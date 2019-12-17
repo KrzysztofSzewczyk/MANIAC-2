@@ -14,4 +14,6 @@ struct board_state_t {
 	struct move_t last_move;
 };
 
+struct board_state_t * new_board_state(struct move_checker_t * copy);
+
 #endif
