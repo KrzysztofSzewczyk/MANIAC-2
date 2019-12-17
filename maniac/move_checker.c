@@ -68,3 +68,8 @@ bool move_checker_legal_square(struct move_checker_t * this, int col, int row) {
 	return col > 0 && col < 6 && row > 0 && row < 6 && this->board[col][row] != UNDEFINED;
 }
 
+bool move_checker_legal_move(struct move_checker_t * this, int p, int x1, int y1, int x2, int y2) {
+	return move_checker_semi_legal_move(this, x1, y1, x2, y2)
+	&& move_checker_in_check_after_move(this, p, x1, y1, x2, y2);
+}
+
