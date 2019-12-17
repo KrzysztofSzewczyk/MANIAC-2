@@ -52,7 +52,7 @@ Mkfile.old
 dkms.conf
 
 # binaries
-core/core
+maniac/maniac
 
 # Custom directories
 attic/
