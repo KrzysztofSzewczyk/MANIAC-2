@@ -32,6 +32,8 @@ struct los_alamos_t * new_los_alamos(int engine) {
 			break;
 	}
 	
+	// Note: It's ugly as heck, I should rewrite it once I get
+	//       more stuff finished.
 	while(true) {
 		for(int x = 0; x < 6; x++) {
 			for(int y = 0; y < 6; y++)
