@@ -77,3 +77,34 @@ bool move_checker_legal_move_m(struct move_checker_t * this, int p, struct move_
 	return move_checker_legal_move(this, p, m->start_col, m->start_row, m->end_col, m->end_row);
 }
 
+bool move_checker_semi_legal_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	if(!move_checker_legal_square(this, x2, y2))
+		return false;
+	
+	if(x1 == x2 && y1 == y2)
+		return false;
+	
+	if(move_checker_taking_piece_of_same_color(this, x1, y1, x2, y2))
+		return false;
+	
+	switch(this->board[x1][y1]) {
+	case UNDEFINED:
+		return false;
+	case BLACK_KING:
+		return move_checker_legal_black_king_move(this, x1, y1, x2, y2);
+	case WHITE_KING:
+		return move_checker_legal_white_king_move(this, x1, y1, x2, y2);
+	case WHITE_QUEEN: case BLACK_QUEEN:
+		return move_checker_legal_queen_move(this, x1, y1, x2, y2);
+	case WHITE_ROOK: case BLACK_ROOK:
+		return move_checker_legal_rook_move(this, x1, y1, x2, y2);
+	case WHITE_KNIGHT: case BLACK_KNIGHT:
+		return move_checker_legal_knight_move(this, x1, y1, x2, y2);
+	case BLACK_PAWN:
+		return move_checker_legal_black_pawn_move(this, x1, y1, x2, y2);
+	case WHITE_PAWN:
+		return move_checker_legal_white_pawn_move(this, x1, y1, x2, y2);
+	}
+	
+	return true;
+}
