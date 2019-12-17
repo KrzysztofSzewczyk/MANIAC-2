@@ -63,3 +63,8 @@ struct move_checker_t * new_move_checker_clone(struct move_checker_t * clone) {
 	
 	return this;
 }
+
+bool move_checker_legal_square(struct move_checker_t * this, int col, int row) {
+	return col > 0 && col < 6 && row > 0 && row < 6 && this->board[col][row] != UNDEFINED;
+}
+
