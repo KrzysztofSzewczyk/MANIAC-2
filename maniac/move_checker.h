@@ -21,5 +21,10 @@ struct move_checker_t {
 };
 
 struct move_checker_t * new_move_checker(int board[6][6]);
+struct move_checker_t * new_move_checker_clone(struct move_checker_t * clone);
+bool move_checker_legal_square(struct move_checker_t * this, int col, int row);
+bool move_checker_legal_move(struct move_checker_t * this, int p, int x1, int y1, int x2, int y2);
+bool move_checker_legal_move_m(struct move_checker_t * this, int p, struct move_t * m);
+bool move_checker_semi_legal_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 
 #endif
