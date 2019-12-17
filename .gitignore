@@ -51,6 +51,25 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# binaries
+core/core
+
 # Custom directories
 attic/
+
+# GNU Sh*t
 autom4te.cache/
+aclocal.m4
+compile
+confdefs.h
+config.h
+config.h.in
+config.log
+config.status
+configure
+depcomp
+install-sh
+Makefile
+Makefile.in
+missing
+stamp-h1
