@@ -9,7 +9,7 @@ struct move_t * new_move(void) {
 	if(!obj)
 		return NULL;
 	
-	obj->startrow = obj->endrow = obj->startcol = obj->endcol = obj->prom = 0;
+	obj->start_row = obj->end_row = obj->start_col = obj->end_col = obj->prom = 0;
 	
 	return obj;
 }
@@ -20,15 +20,15 @@ struct move_t * new_move_coord(int x1, int y1, int x2, int y2) {
 	if(!obj)
 		return NULL;
 	
-	obj->startrow = x1;
-	obj->endrow = y1;
-	obj->startcol = x2;
-	obj->endcol = y2;
+	obj->start_row = x1;
+	obj->end_row = y1;
+	obj->start_col = x2;
+	obj->end_col = y2;
 	obj->prom = 0;
 	
 	return obj;
 }
 
-bool isvoid(struct move_t * this) {
-	return (this->startrow + this->endrow + this->startcol + this->endcol) == 0;
+bool is_void(struct move_t * this) {
+	return ~(this->start_row | this->end_row | this->start_col | this->end_col);
 }

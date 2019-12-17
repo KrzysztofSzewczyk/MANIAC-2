@@ -17,8 +17,8 @@ struct board_state_t * new_board_state(struct move_checker_t * copy) {
 	this->last_player_moved = copy->last_player_moved;
 	
 	this->last_move = new_move_coord(
-		copy->last_move.start_col, copy->last_move.start_row,
-		copy->last_move.end_col, copy->last_move.end_row
+		copy->last_move->start_col, copy->last_move->start_row,
+		copy->last_move->end_col, copy->last_move->end_row
 	);
 	
 	this->last_move->prom = copy->last_move->prom;
