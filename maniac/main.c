@@ -112,6 +112,7 @@ void los_alamos_load_fen(struct los_alamos_t * this) {
 	}
 }
 
+// Here be dragons
 int los_alamos_char_to_piece(int c) {
 	const static int magic[] = {
 		0x0AA6, 0xA824, 0xAAAA, 0xAAAA, 0xAAAA,
