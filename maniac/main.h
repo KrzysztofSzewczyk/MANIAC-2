@@ -9,7 +9,7 @@
 struct los_alamos_t {
 	int board[6][6];
 	
-	struct move_checker_t control;
+	struct move_checker_t * control;
 	struct move_t (*computer)(struct move_checker_t *, int);
 	
 	int computer_color;
