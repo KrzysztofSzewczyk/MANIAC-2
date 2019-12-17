@@ -73,3 +73,7 @@ bool move_checker_legal_move(struct move_checker_t * this, int p, int x1, int y1
 	&& move_checker_in_check_after_move(this, p, x1, y1, x2, y2);
 }
 
+bool move_checker_legal_move_m(struct move_checker_t * this, int p, struct move_t * m) {
+	return move_checker_legal_move(this, p, m->start_col, m->start_row, m->end_col, m->end_row);
+}
+
