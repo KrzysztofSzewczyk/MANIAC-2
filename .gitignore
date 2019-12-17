@@ -58,6 +58,7 @@ core/core
 attic/
 
 # GNU Sh*t
+.deps/
 autom4te.cache/
 aclocal.m4
 compile

@@ -1,3 +1,0 @@
-board_state.o: board_state.c /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:
