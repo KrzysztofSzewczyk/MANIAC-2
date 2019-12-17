@@ -1,4 +1,5 @@
 
+#include "engines.h"
 #include "main.h"
 
 #include <stdio.h>
@@ -74,7 +75,7 @@ void los_alamos_reset(struct los_alamos_t * this) {
 	
 	los_alamos_load_fen(this);
 	
-	this->control = new_move_checker(this);
+	this->control = new_move_checker(this->board);
 }
 
 void los_alamos_load_fen(struct los_alamos_t * this) {

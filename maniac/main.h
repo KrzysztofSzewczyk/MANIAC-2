@@ -3,14 +3,13 @@
 #define MAIN_H
 
 #include "move_checker.h"
-#include "engines.h"
 #include "pieces.h"
 
 struct los_alamos_t {
 	int board[6][6];
 	
 	struct move_checker_t * control;
-	struct move_t (*computer)(struct move_checker_t *, int);
+	struct move_t * (*computer)(struct move_checker_t *, int);
 	
 	int computer_color;
 	int move_number;

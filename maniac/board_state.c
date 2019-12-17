@@ -1,6 +1,8 @@
 
 #include "board_state.h"
 
+#include <stdlib.h>
+
 struct board_state_t * new_board_state(struct move_checker_t * copy) {
 	struct board_state_t * this = malloc(sizeof(struct board_state_t));
 	
