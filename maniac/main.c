@@ -59,7 +59,7 @@ struct los_alamos_t * new_los_alamos(int engine) {
 				promote = 3;
 		}
 		
-		
+		// TODO: Make a move, check it, and respond with a computer move.
 	}
 	
 	return this;
@@ -130,4 +130,8 @@ int los_alamos_char_to_piece(int c) {
 		case 2: return (magic[c >> 2] & 0x00F0) >> 4;
 		case 3: return (magic[c >> 2] & 0x000F);
 	}
+}
+
+int los_alamos_piece_to_char(int c) {
+	return (c>0&&c<11) ? "KkQqRrNnPp-"[c] : '.';
 }

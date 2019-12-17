@@ -33,4 +33,7 @@ struct los_alamos_t * new_los_alamos(int engine);
 void los_alamos_reset(struct los_alamos_t * this);
 void los_alamos_load_fen(struct los_alamos_t * this);
 
+int los_alamos_char_to_piece(int c);
+int los_alamos_piece_to_char(int c);
+
 #endif
