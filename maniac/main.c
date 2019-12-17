@@ -18,17 +18,16 @@ struct los_alamos_t * new_los_alamos(int engine) {
 	
 	this->setup = "rnqknr/pppppp///PPPPPP/RNQKNR";
 	this->computer_color = 1;
-	this->computer = new_engine();
 	
 	los_alamos_reset(this);
 	
 	switch(engine) {
 		case 0:
-			engine_set(this->computer, materialistic_engine);
+			this->computer = materialistic_engine;
 			break;
 		
 		case 1:
-			engine_set(this->computer, random_engine);
+			this->computer = random_engine;
 			break;
 	}
 	
