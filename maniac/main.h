@@ -3,6 +3,7 @@
 #define MAIN_H
 
 #include "move_checker.h"
+#include "engines.h"
 #include "pieces.h"
 
 struct los_alamos_t {
