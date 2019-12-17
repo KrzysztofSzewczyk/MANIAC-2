@@ -20,7 +20,7 @@ struct los_alamos_t * new_los_alamos(int engine) {
 	this->computer_color = 1;
 	this->computer = new_engine();
 	
-	los_alamos_reset();
+	los_alamos_reset(this);
 	
 	switch(engine) {
 		case 0:
@@ -88,7 +88,7 @@ void los_alamos_load_fen(struct los_alamos_t * this) {
 			x = 0;
 			y--;
 		} else if(c == '-') {
-			board[x][y] = UNDEFINED;
+			this->board[x][y] = UNDEFINED;
 			x++;
 		} else if(isdigit(c) && c != '0') {
 			int skip = c - '0';
