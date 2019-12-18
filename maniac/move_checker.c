@@ -6,6 +6,9 @@
 
 #include <stdlib.h>
 
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) > (b)) ? (b) : (a))
+
 struct move_checker_t * new_move_checker(int board[6][6]) {
 	struct move_checker_t * this = malloc(sizeof(struct move_checker_t));
 	
