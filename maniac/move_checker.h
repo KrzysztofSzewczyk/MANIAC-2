@@ -36,5 +36,6 @@ bool move_checker_legal_queen_move(struct move_checker_t * this, int x1, int y1,
 bool move_checker_legal_white_pawn_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 bool move_checker_empty_square(struct move_checker_t * this, int x, int y);
+bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 
 #endif
