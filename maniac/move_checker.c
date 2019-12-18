@@ -184,11 +184,5 @@ bool move_checker_legal_queen_move(struct move_checker_t * this, int x1, int y1,
 }
 
 bool move_checker_legal_white_pawn_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	bool capturing = board[x2][y2] != 0;
-	
-	if (capturing && y2 == y1 + 1 && ((x1 == x2 + 1) || (x1 == x2 - 1)))
-		return true;
-	else if (!capturing && (y2 == y1 + 1) && x1 == x2)
-		return true;
-	return false;
+	return (((this->board[x2][y2] != 0) && y2 == y1 + 1 && ((x1 == x2 + 1) || (x1 == x2 - 1))) || (!(this->board[x2][y2] != 0) && (y2 == y1 + 1) && x1 == x2))
 }
