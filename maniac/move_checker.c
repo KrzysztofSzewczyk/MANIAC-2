@@ -193,6 +193,6 @@ bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int x1, in
 	    || (!(this->board[x2][y2] != NONE) && (y2 == y1 - 1) && x1 == x2));
 }
 
-bool move_checker_empty_square(struct move_checker_t * this, int x1, int y1) {
+bool move_checker_empty_square(struct move_checker_t * this, int x, int y) {
 	return this->board[x][y] == NONE;
 }
