@@ -157,4 +157,23 @@ bool move_checker_legal_knight_move(struct move_checker_t * this, int x1, int y1
 // Included just for completness, will be used by queen move check.
 // Otherwise it's useless, as los alamos chess doesn't even have bishops.
 bool move_checker_legal_bishop_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	int xdif = x1 - x2, ydif = y1 - y2;
+	
+	if (xdif == ydif || xdif == -ydif) {
+		int xstep = (x1 < x2) ? 1 : -1,
+		    ystep = (y1 < y2) ? 1 : -1,
+			i = x1 + xstep,
+			j = y1 + ystep;
+		
+		while (i != x2) {
+			if (!move_checker_empty_square(this, i, j))
+				return false;
+			
+			i += xstep;
+			j += ystep;
+		}
+		
+		return true;
+	} else
+		return false;
 }
