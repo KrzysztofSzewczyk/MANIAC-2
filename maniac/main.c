@@ -127,13 +127,13 @@ int los_alamos_char_to_piece(int c) {
 		return 0xA;
 
     switch(c & 3) {
-		case 0: return magic[c >> 2] >> 12;
-		case 1: return (magic[c >> 2] & 0x0F00) >> 8;
-		case 2: return (magic[c >> 2] & 0x00F0) >> 4;
-		case 3: return (magic[c >> 2] & 0x000F);
+		case 0: return (magic[c >> 2] >> 12) + 1;
+		case 1: return ((magic[c >> 2] & 0x0F00) >> 8) + 1;
+		case 2: return ((magic[c >> 2] & 0x00F0) >> 4) + 1;
+		case 3: return (magic[c >> 2] & 0x000F) + 1;
 	}
 }
 
 int los_alamos_piece_to_char(int c) {
-	return (c>0&&c<11) ? "KkQqRrNnPp-"[c] : '.';
+	return (c>0&&c<12) ? "KkQqRrNnPp-"[c-1] : '.';
 }

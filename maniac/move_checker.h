@@ -32,5 +32,6 @@ bool move_checker_legal_king_move(int x1, int y1, int x2, int y2);
 bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 bool move_checker_legal_knight_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 bool move_checker_legal_bishop_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_queen_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 
 #endif
