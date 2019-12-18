@@ -204,3 +204,6 @@ bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x
 	// Black piece codes are divisible by two.
 	return (board[x1][y1] & 1 == board[x2][y2] & 1);
 }
+
+void move_checker_change_castling_status(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+}
