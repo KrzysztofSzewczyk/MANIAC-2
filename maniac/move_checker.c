@@ -136,13 +136,13 @@ bool move_checker_legal_king_move(int x1, int y1, int x2, int y2) {
 bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
 	if(x1 == x2) {
 		for(int i = min(y1, y2) + 1; i < max(y1, y2); i++)
-			if(!move_checker_empty_square(x1, i))
+			if(!move_checker_empty_square(this, x1, i))
 				return false;
 		
 		return true;
 	} else if(y1 == y2) {
 		for(int i = min(x1, x2) + 1; i < max(x1, x2); i++)
-			if(!move_checker_empty_square(i, y1))
+			if(!move_checker_empty_square(this, i, y1))
 				return false;
 		
 		return true;
