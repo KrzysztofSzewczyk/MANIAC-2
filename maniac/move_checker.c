@@ -205,5 +205,22 @@ bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x
 	return (board[x1][y1] & 1 == board[x2][y2] & 1);
 }
 
-void move_checker_change_castling_status(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+void move_checker_change_castling_status(struct move_checker_t * this, int x, int y) {
+	if(x == 0 && y == 0)
+		this->white_long_castling = false;
+	
+	if(x == 5 && y == 0)
+		this->white_short_castling = false;
+	
+	if(x == 0 && y == 5)
+		this->black_long_castling = false;
+	
+	if(x == 5 && y == 0)
+		this->black_short_castling = false;
+	
+	if(this->board[x][y] == WHITE_KING)
+		this->white_long_castling = this->white_short_castling = false;
+	
+	if(this->board[x][y] == BLACK_KING)
+		this->black_long_castling = this->black_short_castling = false;
 }
