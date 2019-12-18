@@ -196,3 +196,11 @@ bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int x1, in
 bool move_checker_empty_square(struct move_checker_t * this, int x, int y) {
 	return this->board[x][y] == NONE;
 }
+
+bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	if(move_checker_empty_square(this, x2, y2))
+		return false;
+	
+	// Black piece codes are divisible by two.
+	return (board[x1][y1] % 2 == board[x2][y2] % 2);
+}
