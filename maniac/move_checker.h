@@ -38,5 +38,6 @@ bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int x1, in
 bool move_checker_empty_square(struct move_checker_t * this, int x, int y);
 bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 void move_checker_change_castling_status(struct move_checker_t * this, int x, int y);
+bool move_checker_legal_white_short_castling(struct move_checker_t * this);
 
 #endif
