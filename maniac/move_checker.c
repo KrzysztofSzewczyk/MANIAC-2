@@ -108,3 +108,11 @@ bool move_checker_semi_legal_move(struct move_checker_t * this, int x1, int y1, 
 	
 	return true;
 }
+
+bool move_checker_legal_white_king_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	if(x1 == this->kingrw && x2 == this->kingrw + 2 && y1 == 0 && y2 == 0)
+		return move_checker_legal_white_short_castling(this);
+	if(x1 == this->kingrw && x2 == this->kingrw - 2 && y1 == 0 && y2 == 0)
+		return move_checker_legal_white_long_castling(this);
+	return move_checker_legal_king_move(x1, y1, x2, y2);
+}
