@@ -26,5 +26,11 @@ bool move_checker_legal_square(struct move_checker_t * this, int col, int row);
 bool move_checker_legal_move(struct move_checker_t * this, int p, int x1, int y1, int x2, int y2);
 bool move_checker_legal_move_m(struct move_checker_t * this, int p, struct move_t * m);
 bool move_checker_semi_legal_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_white_king_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_black_king_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_king_move(int x1, int y1, int x2, int y2);
+bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_knight_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+bool move_checker_legal_bishop_move(struct move_checker_t * this, int x1, int y1, int x2, int y2);
 
 #endif
