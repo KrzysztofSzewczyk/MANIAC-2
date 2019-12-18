@@ -128,3 +128,7 @@ bool move_checker_legal_black_king_move(struct move_checker_t * this, int x1, in
 bool move_checker_legal_king_move(int x1, int y1, int x2, int y2) {
 	return ((x1 - x2) * (x1 - x2) <= 1 && (y1 - y2) * (y1 - y2) <= 1);
 }
+
+bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	
+}
