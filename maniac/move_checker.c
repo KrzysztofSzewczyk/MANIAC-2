@@ -225,7 +225,6 @@ void move_checker_change_castling_status(struct move_checker_t * this, int x, in
 		this->black_long_castling = this->black_short_castling = false;
 }
 
-// Note to my tomorrow self: 0's at the end mean the players
 bool move_checker_legal_white_short_castling(struct move_checker_t * this) {
 	if(move_checker_in_check(0))
 		return false;
