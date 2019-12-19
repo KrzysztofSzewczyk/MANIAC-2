@@ -306,3 +306,14 @@ bool move_checker_in_check(struct move_checker_t * this, int player) {
 								return true;
 	return false;
 }
+
+bool move_checker_attacked(struct move_checker_t * this, int player, int x, int y) {
+	for (int x2 = 0; x2 < 6; x2++)
+		for (int y2 = 0; y2 < 6; y2++)
+			if ((!move_checker_empty_square(this, x2, y2)) || (this->board[x2][y2] != UNDEFINED))
+				if (move_checker_piece_owner(this->board[x2][y2]) == player)
+					if (move_checker_semi_legal_move(this, x2, y2, x, y))
+						return true;
+	
+	return false;
+}
