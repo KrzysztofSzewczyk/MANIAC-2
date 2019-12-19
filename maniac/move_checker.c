@@ -317,3 +317,12 @@ bool move_checker_attacked(struct move_checker_t * this, int player, int x, int 
 	
 	return false;
 }
+
+bool move_checker_in_check_after_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2) {
+	int player = move_checker_piece_owner_cr(this, x1, y1);
+	struct move_checker_t * aftermove = new_move_checker_clone(this);
+	move_checker_do_move(aftermove, promote, x1, y1, x2, y2);
+	bool ret = move_checker_in_check(aftermove, player);
+	free(aftermove);
+	return ret;
+}
