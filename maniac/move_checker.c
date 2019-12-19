@@ -257,3 +257,14 @@ bool move_checker_legal_black_short_castling(struct move_checker_t * this) {
 	
 	return this->black_short_castling;
 }
+
+bool move_checker_legal_black_long_castling(struct move_checker_t * this) {
+	if(move_checker_in_check(1))
+		return false;
+	
+	for(int i = this->kingrb - 1; i > 0; i--)
+		if(!move_checker_empty_square(this, i, 5) || move_checker_attacked(this, 0, i, 5))
+			return false;
+	
+	return this->black_long_castling;
+}
