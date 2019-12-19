@@ -285,3 +285,6 @@ int move_checker_piece_owner(int piece) {
 	return ~(piece & 1);
 }
 
+int move_checker_piece_owner_cr(struct move_checker_t * this, int x, int y) {
+	return move_checker_piece_owner(this->board[x][y]);
+}
