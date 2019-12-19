@@ -226,7 +226,7 @@ void move_checker_change_castling_status(struct move_checker_t * this, int x, in
 }
 
 bool move_checker_legal_white_short_castling(struct move_checker_t * this) {
-	if(move_checker_in_check(0))
+	if(move_checker_in_check(this, 0))
 		return false;
 	
 	for(int i = this->kingrw + 1; i < 5; i++)
@@ -237,7 +237,7 @@ bool move_checker_legal_white_short_castling(struct move_checker_t * this) {
 }
 
 bool move_checker_legal_white_long_castling(struct move_checker_t * this) {
-	if(move_checker_in_check(0))
+	if(move_checker_in_check(this, 0))
 		return false;
 	
 	for(int i = this->kingrw - 1; i > 0; i--)
@@ -248,7 +248,7 @@ bool move_checker_legal_white_long_castling(struct move_checker_t * this) {
 }
 
 bool move_checker_legal_black_short_castling(struct move_checker_t * this) {
-	if(move_checker_in_check(1))
+	if(move_checker_in_check(this, 1))
 		return false;
 	
 	for(int i = this->kingrb + 1; i < 5; i++)
@@ -259,7 +259,7 @@ bool move_checker_legal_black_short_castling(struct move_checker_t * this) {
 }
 
 bool move_checker_legal_black_long_castling(struct move_checker_t * this) {
-	if(move_checker_in_check(1))
+	if(move_checker_in_check(this, 1))
 		return false;
 	
 	for(int i = this->kingrb - 1; i > 0; i--)
