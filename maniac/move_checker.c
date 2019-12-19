@@ -288,3 +288,8 @@ int move_checker_piece_owner(int piece) {
 int move_checker_piece_owner_cr(struct move_checker_t * this, int x, int y) {
 	return move_checker_piece_owner(this->board[x][y]);
 }
+
+int move_checker_right_player(struct move_checker_t * this, int x, int y) {
+	return move_checker_piece_owner_cr(this, x, y) != move_checker_get_last_player_moved(this);
+}
+
