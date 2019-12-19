@@ -268,3 +268,7 @@ bool move_checker_legal_black_long_castling(struct move_checker_t * this) {
 	
 	return this->black_long_castling;
 }
+
+bool move_checker_pawn_promotion(struct move_checker_t * this, int x1, int y1, int y2) {
+	return (this->board[x1][y1] == WHITE_PAWN && y2 == 5) || (this->board[x1][y1] == BLACK_PAWN && y2 == 0);
+}
