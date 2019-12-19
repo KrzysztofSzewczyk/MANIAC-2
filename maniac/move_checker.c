@@ -302,7 +302,7 @@ bool move_checker_in_check(struct move_checker_t * this, int player) {
 				for (int x2 = 0; x2 < 6; x2++)
 					for (int y2 = 0; y2 < 6; y2++)
 						if ((this->board[x2][y2] != NONE) || (this->board[x2][y2] != UNDEFINED))
-							if (SemiLegalMove(this, x2, y2, x, y))
+							if (move_checker_semi_legal_move(this, x2, y2, x, y))
 								return true;
 	return false;
 }
