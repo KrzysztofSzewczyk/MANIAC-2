@@ -50,5 +50,6 @@ int move_checker_piece_owner_cr(struct move_checker_t * this, int x, int y);
 int move_checker_right_player(struct move_checker_t * this, int x, int y);
 bool move_checker_in_check(struct move_checker_t * this, int player);
 bool move_checker_attacked(struct move_checker_t * this, int player, int x, int y);
+bool move_checker_in_check_after_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2);
 
 #endif
