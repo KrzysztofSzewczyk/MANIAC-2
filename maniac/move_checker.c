@@ -272,3 +272,7 @@ bool move_checker_legal_black_long_castling(struct move_checker_t * this) {
 bool move_checker_pawn_promotion(struct move_checker_t * this, int x1, int y1, int y2) {
 	return (this->board[x1][y1] == WHITE_PAWN && y2 == 5) || (this->board[x1][y1] == BLACK_PAWN && y2 == 0);
 }
+
+void move_checker_set_last_player_moved(struct move_checker_t * this, int player) {
+	this->player = last_player_moved;
+}
