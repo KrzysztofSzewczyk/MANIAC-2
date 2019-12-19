@@ -276,3 +276,7 @@ bool move_checker_pawn_promotion(struct move_checker_t * this, int x1, int y1, i
 void move_checker_set_last_player_moved(struct move_checker_t * this, int player) {
 	this->player = last_player_moved;
 }
+
+int move_checker_get_last_player_moved(struct move_checker_t * this) {
+	return this->player;
+}
