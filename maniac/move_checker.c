@@ -280,3 +280,8 @@ void move_checker_set_last_player_moved(struct move_checker_t * this, int player
 int move_checker_get_last_player_moved(struct move_checker_t * this) {
 	return this->player;
 }
+
+int move_checker_piece_owner(int piece) {
+	return ~(piece & 1);
+}
+
