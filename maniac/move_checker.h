@@ -49,5 +49,6 @@ int move_checker_piece_owner(int piece);
 int move_checker_piece_owner_cr(struct move_checker_t * this, int x, int y);
 int move_checker_right_player(struct move_checker_t * this, int x, int y);
 bool move_checker_in_check(struct move_checker_t * this, int player);
+bool move_checker_attacked(struct move_checker_t * this, int player, int x, int y);
 
 #endif
