@@ -42,5 +42,8 @@ bool move_checker_legal_white_short_castling(struct move_checker_t * this);
 bool move_checker_legal_white_long_castling(struct move_checker_t * this);
 bool move_checker_legal_black_short_castling(struct move_checker_t * this);
 bool move_checker_legal_black_long_castling(struct move_checker_t * this);
+bool move_checker_pawn_promotion(struct move_checker_t * this, int x1, int y1, int y2);
+void move_checker_set_last_player_moved(struct move_checker_t * this, int player);
+int move_checker_get_last_player_moved(struct move_checker_t * this);
 
 #endif
