@@ -293,16 +293,16 @@ int move_checker_right_player(struct move_checker_t * this, int x, int y) {
 	return move_checker_piece_owner_cr(this, x, y) != move_checker_get_last_player_moved(this);
 }
 
-bool move_checker_in_check(int player) {
+bool move_checker_in_check(struct move_checker_t * this, int player) {
 	int kingpiece = WHITE_KING + player;
 	
 	for (int x = 0; x < 6; x++)
 		for (int y = 0; y < 6; y++)
-			if (board[x][y] == kingpiece)
+			if (this->board[x][y] == kingpiece)
 				for (int x2 = 0; x2 < 6; x2++)
 					for (int y2 = 0; y2 < 6; y2++)
-						if ((board[x2][y2] != NONE) || (board[x2][y2] != UNDEFINED))
-							if (SemiLegalMove(x2, y2, x, y))
+						if ((this->board[x2][y2] != NONE) || (this->board[x2][y2] != UNDEFINED))
+							if (SemiLegalMove(this, x2, y2, x, y))
 								return true;
 	return false;
 }
