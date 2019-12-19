@@ -326,3 +326,8 @@ bool move_checker_in_check_after_move(struct move_checker_t * this, int promote,
 	free(aftermove);
 	return ret;
 }
+
+void move_checker_do_move_m(struct move_checker_t * this, struct move_t * move) {
+	move_checker_do_move(this, move->startcol, move->startrow, move->endcol, move->endrow);
+}
+
