@@ -352,3 +352,13 @@ void move_checker_do_move(struct move_checker_t * this, int promote, int x1, int
 	if (castled)
 		move_checker_handle_castling(this, x1, y1, x2, y2);
 }
+
+void move_checker_handle_castling(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
+	if(x1 > x2) {
+		this->board[x2 + 1][y2] = this->board[0][y2];
+		this->board[0][y2] = NONE;
+	} else {
+		this->board[x2 - 1][y2] = this->board[5][y2];
+		this->board[5][y2] = 0;
+	}
+}
