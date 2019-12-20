@@ -331,3 +331,24 @@ void move_checker_do_move_m(struct move_checker_t * this, struct move_t * move) 
 	move_checker_do_move(this, move->start_col, move->start_row, move->end_col, move->end_row);
 }
 
+void move_checker_do_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2) {
+	bool promotion = move_checker_pawn_promotion(this, x1, y1, y2);
+	bool castled = !((this->board[x1][y1] > 2) || (abs(x1 - x2) < 2));
+	
+	if(this->last_move)
+		free(this->last_move);
+	
+	this->last_move = new_move_coord(x1, y1, x2, y2);
+	
+	move_checker_set_last_player_moved(this, move_checker_piece_owner(this->board[x1][y1]));
+	move_checker_change_castling_status(this, x1, y1);
+	
+	this->board[x2][y2] = this->board[x1][y1];
+	this->board[x1][y1] = NONE;
+	
+	if (promotion)
+		this->board[x2][y2] = move_checker_determine_promotion_piece(this, x2, y2, promote);
+	
+	if (castled)
+		move_checker_handle_castling(this, x1, y1, x2, y2);
+}
