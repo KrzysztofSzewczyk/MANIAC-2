@@ -54,5 +54,6 @@ bool move_checker_in_check_after_move(struct move_checker_t * this, int promote,
 void move_checker_do_move_m(struct move_checker_t * this, struct move_t * move);
 void move_checker_do_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2);
 void move_checker_handle_castling(struct move_checker_t * this, int x1, int y1, int x2, int y2);
+int move_checker_determine_promotion_piece(struct move_checker_t * this, int x, int y, int promote);
 
 #endif
