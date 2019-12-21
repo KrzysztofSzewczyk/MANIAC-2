@@ -366,3 +366,11 @@ void move_checker_handle_castling(struct move_checker_t * this, int x1, int y1, 
 int move_checker_determine_promotion_piece(struct move_checker_t * this, int x, int y, int promote) {
 	return promote + move_checker_piece_owner_cr(this, x, y);
 }
+
+void move_checker_disable_castling(struct move_checker_t * this) {
+	this->white_short_castling = false;
+	this->black_short_castling = false;
+	
+	this->white_long_castling = false;
+	this->black_long_castling = false;
+}
