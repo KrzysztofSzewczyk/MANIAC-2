@@ -1,5 +1,5 @@
 
-AC_INIT([MANIAC-2], [0.1], [kspalaiologos@gmail.com])
+AC_INIT([MANIAC-2], [0.2], [kspalaiologos@gmail.com])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([maniac/main.c])
