@@ -374,3 +374,10 @@ void move_checker_disable_castling(struct move_checker_t * this) {
 	this->white_long_castling = false;
 	this->black_long_castling = false;
 }
+
+bool move_checker_mated(struct move_checker_t * this, int player) {
+	return (this->last_player_moved != player
+	   && !move_checker_in_check(this, player)) ?
+			(!move_checker_has_legal_move(this, player)) :
+			false;
+}
