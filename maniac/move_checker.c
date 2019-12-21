@@ -362,3 +362,7 @@ void move_checker_handle_castling(struct move_checker_t * this, int x1, int y1, 
 		this->board[5][y2] = 0;
 	}
 }
+
+int move_checker_determine_promotion_piece(struct move_checker_t * this, int x, int y, int promote) {
+	return promote + move_checker_piece_owner_cr(this, x, y);
+}
