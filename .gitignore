@@ -67,7 +67,6 @@ config.h
 config.h.in
 config.log
 config.status
-configure
 depcomp
 install-sh
 Makefile
