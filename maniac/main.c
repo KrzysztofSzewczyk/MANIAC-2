@@ -62,6 +62,34 @@ struct los_alamos_t * new_los_alamos(int engine) {
 		}
 		
 		// TODO: Make a move, check it, and respond with a computer move.
+		
+		if(move_checker_legal_move(this->control, promote, x2, y2, x1, y1) && move_checker_right_player(this->control, x2, y2)) {
+			move_checker_do_move(this->control, promote, x2, y2, x1, y1);
+			
+			this->move_number++;
+			
+			struct move_t * computer_move = this->computer(this->control, this->computer_color);
+			
+			if(!computer_move) {
+				printf("The engine resigned.");
+				break;
+			}
+			
+			move_checker_do_move_m(this->control, computer_move);
+			
+			if(move_checker_mated(this->control, 1 - this->computer_color))
+				printf("0-1");
+			else if(move_checker_stalemated(this->control, 1 - this->computer_color))
+				printf("1/2-1/2");
+			else if(move_checker_mated(this->control, this->computer_color))
+				printf("1-0");
+			else if(move_checker_stalemated(this->control, this->computer_color))
+				printf("1/2-1/2");
+			else
+				continue;
+			
+			break;
+		}
 	}
 	
 	return this;
