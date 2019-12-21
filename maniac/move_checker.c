@@ -388,3 +388,19 @@ bool move_checker_stalemated(struct move_checker_t * this, int player) {
 			(!move_checker_has_legal_move(this, player)) :
 			false;
 }
+
+bool move_checker_has_legal_move(struct move_checker_t * this, int player) {
+	for(int x = 0; x < 6; x++) {
+		for(int y = 0; y < 6; y++) {
+			if(((!move_checker_empty_square(this, x, y))
+					|| (this->board[x][y] != UNDEFINED))
+				&& move_checker_piece_owner_cr(this, x, y) == player)
+				for(int x2 = 0; x2 < 6; x2++)
+					for(int y2 = 0; y2 < 6; y2++)
+						if(move_checker_legal_move(this, 3, x, y, x2, y2))
+							return true;
+		}
+	}
+	
+	return false;
+}

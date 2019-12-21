@@ -58,5 +58,6 @@ int move_checker_determine_promotion_piece(struct move_checker_t * this, int x, 
 void move_checker_disable_castling(struct move_checker_t * this);
 bool move_checker_mated(struct move_checker_t * this, int player);
 bool move_checker_stalemated(struct move_checker_t * this, int player);
+bool move_checker_has_legal_move(struct move_checker_t * this, int player);
 
 #endif
