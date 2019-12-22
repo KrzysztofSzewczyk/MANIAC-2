@@ -37,7 +37,7 @@ struct los_alamos_t * new_los_alamos(int engine) {
 	while(true) {
 		for(int x = 0; x < 6; x++) {
 			for(int y = 0; y < 6; y++)
-				putchar(los_alamos_piece_to_char(this->board[x][y]));
+				putchar(los_alamos_piece_to_char(this->board[y][x]));
 			
 			if(x != 5)
 				putchar('/');
