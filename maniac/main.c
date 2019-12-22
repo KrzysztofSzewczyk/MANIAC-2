@@ -8,7 +8,7 @@
 #include <stdbool.h>
 
 int main(void) {
-	new_los_alamos(0);
+	new_los_alamos(1);
 }
 
 struct los_alamos_t * new_los_alamos(int engine) {
