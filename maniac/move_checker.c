@@ -72,77 +72,77 @@ bool move_checker_legal_square(struct move_checker_t * this, int col, int row) {
 	return col > 0 && col < 6 && row > 0 && row < 6 && this->board[col][row] != UNDEFINED;
 }
 
-bool move_checker_legal_move(struct move_checker_t * this, int p, int x1, int y1, int x2, int y2) {
-	return move_checker_semi_legal_move(this, x1, y1, x2, y2)
-	&& move_checker_in_check_after_move(this, p, x1, y1, x2, y2);
+bool move_checker_legal_move(struct move_checker_t * this, int p, int c1, int r1, int c2, int r2) {
+	return move_checker_semi_legal_move(this, c1, r1, c2, r2)
+	&& move_checker_in_check_after_move(this, p, c1, r1, c2, r2);
 }
 
 bool move_checker_legal_move_m(struct move_checker_t * this, int p, struct move_t * m) {
 	return move_checker_legal_move(this, p, m->start_col, m->start_row, m->end_col, m->end_row);
 }
 
-bool move_checker_semi_legal_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(!move_checker_legal_square(this, x2, y2))
+bool move_checker_semi_legal_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(!move_checker_legal_square(this, c2, r2))
 		return false;
 	
-	if(x1 == x2 && y1 == y2)
+	if(c1 == c2 && r1 == r2)
 		return false;
 	
-	if(move_checker_taking_piece_of_same_color(this, x1, y1, x2, y2))
+	if(move_checker_taking_piece_of_same_color(this, c1, r1, c2, r2))
 		return false;
 	
-	switch(this->board[x1][y1]) {
+	switch(this->board[c1][r1]) {
 	case UNDEFINED:
 		return false;
 	case BLACK_KING:
-		return move_checker_legal_black_king_move(this, x1, y1, x2, y2);
+		return move_checker_legal_black_king_move(this, c1, r1, c2, r2);
 	case WHITE_KING:
-		return move_checker_legal_white_king_move(this, x1, y1, x2, y2);
+		return move_checker_legal_white_king_move(this, c1, r1, c2, r2);
 	case WHITE_QUEEN: case BLACK_QUEEN:
-		return move_checker_legal_queen_move(this, x1, y1, x2, y2);
+		return move_checker_legal_queen_move(this, c1, r1, c2, r2);
 	case WHITE_ROOK: case BLACK_ROOK:
-		return move_checker_legal_rook_move(this, x1, y1, x2, y2);
+		return move_checker_legal_rook_move(this, c1, r1, c2, r2);
 	case WHITE_KNIGHT: case BLACK_KNIGHT:
-		return move_checker_legal_knight_move(this, x1, y1, x2, y2);
+		return move_checker_legal_knight_move(this, c1, r1, c2, r2);
 	case BLACK_PAWN:
-		return move_checker_legal_black_pawn_move(this, x1, y1, x2, y2);
+		return move_checker_legal_black_pawn_move(this, c1, r1, c2, r2);
 	case WHITE_PAWN:
-		return move_checker_legal_white_pawn_move(this, x1, y1, x2, y2);
+		return move_checker_legal_white_pawn_move(this, c1, r1, c2, r2);
 	}
 	
 	return true;
 }
 
-bool move_checker_legal_white_king_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(x1 == this->kingrw && x2 == this->kingrw + 2 && y1 == 0 && y2 == 0)
+bool move_checker_legal_white_king_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(c1 == this->kingrw && c2 == this->kingrw + 2 && r1 == 0 && r2 == 0)
 		return move_checker_legal_white_short_castling(this);
-	if(x1 == this->kingrw && x2 == this->kingrw - 2 && y1 == 0 && y2 == 0)
+	if(c1 == this->kingrw && c2 == this->kingrw - 2 && r1 == 0 && r2 == 0)
 		return move_checker_legal_white_long_castling(this);
-	return move_checker_legal_king_move(x1, y1, x2, y2);
+	return move_checker_legal_king_move(c1, r1, c2, r2);
 }
 
-bool move_checker_legal_black_king_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(x1 == this->kingrw && x2 == this->kingrw + 2 && y1 == 5 && y2 == 5)
+bool move_checker_legal_black_king_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(c1 == this->kingrw && c2 == this->kingrw + 2 && r1 == 5 && r2 == 5)
 		return move_checker_legal_black_short_castling(this);
-	if(x1 == this->kingrw && x2 == this->kingrw - 2 && y1 == 5 && y2 == 5)
+	if(c1 == this->kingrw && c2 == this->kingrw - 2 && r1 == 5 && r2 == 5)
 		return move_checker_legal_black_long_castling(this);
-	return move_checker_legal_king_move(x1, y1, x2, y2);
+	return move_checker_legal_king_move(c1, r1, c2, r2);
 }
 
-bool move_checker_legal_king_move(int x1, int y1, int x2, int y2) {
-	return ((x1 - x2) * (x1 - x2) <= 1 && (y1 - y2) * (y1 - y2) <= 1);
+bool move_checker_legal_king_move(int c1, int r1, int c2, int r2) {
+	return ((c1 - c2) * (c1 - c2) <= 1 && (r1 - r2) * (r1 - r2) <= 1);
 }
 
-bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(x1 == x2) {
-		for(int i = min(y1, y2) + 1; i < max(y1, y2); i++)
-			if(!move_checker_empty_square(this, x1, i))
+bool move_checker_legal_rook_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(c1 == c2) {
+		for(int i = min(r1, r2) + 1; i < max(r1, r2); i++)
+			if(!move_checker_empty_square(this, c1, i))
 				return false;
 		
 		return true;
-	} else if(y1 == y2) {
-		for(int i = min(x1, x2) + 1; i < max(x1, x2); i++)
-			if(!move_checker_empty_square(this, i, y1))
+	} else if(r1 == r2) {
+		for(int i = min(c1, c2) + 1; i < max(c1, c2); i++)
+			if(!move_checker_empty_square(this, i, r1))
 				return false;
 		
 		return true;
@@ -150,22 +150,22 @@ bool move_checker_legal_rook_move(struct move_checker_t * this, int x1, int y1, 
 		return false;
 }
 
-bool move_checker_legal_knight_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	return abs((x1 - x2) * (y1 - y2)) == 2;
+bool move_checker_legal_knight_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	return abs((c1 - c2) * (r1 - r2)) == 2;
 }
 
 // Included just for completness, will be used by queen move check.
 // Otherwise it's useless, as los alamos chess doesn't even have bishops.
-bool move_checker_legal_bishop_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	int xdif = x1 - x2, ydif = y1 - y2;
+bool move_checker_legal_bishop_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	int xdif = c1 - c2, ydif = r1 - r2;
 	
 	if (xdif == ydif || xdif == -ydif) {
-		int xstep = (x1 < x2) ? 1 : -1,
-		    ystep = (y1 < y2) ? 1 : -1,
-			i = x1 + xstep,
-			j = y1 + ystep;
+		int xstep = (c1 < c2) ? 1 : -1,
+		    ystep = (r1 < r2) ? 1 : -1,
+			i = c1 + xstep,
+			j = r1 + ystep;
 		
-		while (i != x2) {
+		while (i != c2) {
 			if (!move_checker_empty_square(this, i, j))
 				return false;
 			
@@ -178,31 +178,31 @@ bool move_checker_legal_bishop_move(struct move_checker_t * this, int x1, int y1
 		return false;
 }
 
-bool move_checker_legal_queen_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	return move_checker_legal_bishop_move(this, x1, y1, x2, y2)
-	    || move_checker_legal_rook_move(this, x1, y1, x2, y2);
+bool move_checker_legal_queen_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	return move_checker_legal_bishop_move(this, c1, r1, c2, r2)
+	    || move_checker_legal_rook_move(this, c1, r1, c2, r2);
 }
 
-bool move_checker_legal_white_pawn_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	return (((this->board[x2][y2] != NONE) && y2 == y1 + 1 && ((x1 == x2 + 1) || (x1 == x2 - 1)))
-	    || (!(this->board[x2][y2] != NONE) && (y2 == y1 + 1) && x1 == x2));
+bool move_checker_legal_white_pawn_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	return (((this->board[c2][r2] != NONE) && r2 == r1 + 1 && ((c1 == c2 + 1) || (c1 == c2 - 1)))
+	    || (!(this->board[c2][r2] != NONE) && (r2 == r1 + 1) && c1 == c2));
 }
 
-bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	return (((this->board[x2][y2] != NONE) && y2 == y1 - 1 && ((x1 == x2 + 1) || (x1 == x2 - 1)))
-	    || (!(this->board[x2][y2] != NONE) && (y2 == y1 - 1) && x1 == x2));
+bool move_checker_legal_black_pawn_move(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	return (((this->board[c2][r2] != NONE) && r2 == r1 - 1 && ((c1 == c2 + 1) || (c1 == c2 - 1)))
+	    || (!(this->board[c2][r2] != NONE) && (r2 == r1 - 1) && c1 == c2));
 }
 
 bool move_checker_empty_square(struct move_checker_t * this, int x, int y) {
 	return this->board[x][y] == NONE;
 }
 
-bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(move_checker_empty_square(this, x2, y2))
+bool move_checker_taking_piece_of_same_color(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(move_checker_empty_square(this, c2, r2))
 		return false;
 	
 	// Black piece codes are divisible by two.
-	return (this->board[x1][y1] & 1 == this->board[x2][y2] & 1);
+	return (this->board[c1][r1] & 1 == this->board[c2][r2] & 1);
 }
 
 void move_checker_change_castling_status(struct move_checker_t * this, int x, int y) {
@@ -269,8 +269,8 @@ bool move_checker_legal_black_long_castling(struct move_checker_t * this) {
 	return this->black_long_castling;
 }
 
-bool move_checker_pawn_promotion(struct move_checker_t * this, int x1, int y1, int y2) {
-	return (this->board[x1][y1] == WHITE_PAWN && y2 == 5) || (this->board[x1][y1] == BLACK_PAWN && y2 == 0);
+bool move_checker_pawn_promotion(struct move_checker_t * this, int c1, int r1, int r2) {
+	return (this->board[c1][r1] == WHITE_PAWN && r2 == 5) || (this->board[c1][r1] == BLACK_PAWN && r2 == 0);
 }
 
 void move_checker_set_last_player_moved(struct move_checker_t * this, int player) {
@@ -299,29 +299,29 @@ bool move_checker_in_check(struct move_checker_t * this, int player) {
 	for (int x = 0; x < 6; x++)
 		for (int y = 0; y < 6; y++)
 			if (this->board[x][y] == kingpiece)
-				for (int x2 = 0; x2 < 6; x2++)
-					for (int y2 = 0; y2 < 6; y2++)
-						if ((this->board[x2][y2] != NONE) || (this->board[x2][y2] != UNDEFINED))
-							if (move_checker_semi_legal_move(this, x2, y2, x, y))
+				for (int c2 = 0; c2 < 6; c2++)
+					for (int r2 = 0; r2 < 6; r2++)
+						if ((this->board[c2][r2] != NONE) || (this->board[c2][r2] != UNDEFINED))
+							if (move_checker_semi_legal_move(this, c2, r2, x, y))
 								return true;
 	return false;
 }
 
 bool move_checker_attacked(struct move_checker_t * this, int player, int x, int y) {
-	for (int x2 = 0; x2 < 6; x2++)
-		for (int y2 = 0; y2 < 6; y2++)
-			if ((!move_checker_empty_square(this, x2, y2)) || (this->board[x2][y2] != UNDEFINED))
-				if (move_checker_piece_owner(this->board[x2][y2]) == player)
-					if (move_checker_semi_legal_move(this, x2, y2, x, y))
+	for (int c2 = 0; c2 < 6; c2++)
+		for (int r2 = 0; r2 < 6; r2++)
+			if ((!move_checker_empty_square(this, c2, r2)) || (this->board[c2][r2] != UNDEFINED))
+				if (move_checker_piece_owner(this->board[c2][r2]) == player)
+					if (move_checker_semi_legal_move(this, c2, r2, x, y))
 						return true;
 	
 	return false;
 }
 
-bool move_checker_in_check_after_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2) {
-	int player = move_checker_piece_owner_cr(this, x1, y1);
+bool move_checker_in_check_after_move(struct move_checker_t * this, int promote, int c1, int r1, int c2, int r2) {
+	int player = move_checker_piece_owner_cr(this, c1, r1);
 	struct move_checker_t * aftermove = new_move_checker_clone(this);
-	move_checker_do_move(aftermove, promote, x1, y1, x2, y2);
+	move_checker_do_move(aftermove, promote, c1, r1, c2, r2);
 	bool ret = move_checker_in_check(aftermove, player);
 	free(aftermove);
 	return ret;
@@ -331,35 +331,35 @@ void move_checker_do_move_m(struct move_checker_t * this, struct move_t * move) 
 	move_checker_do_move(this, move->prom, move->start_col, move->start_row, move->end_col, move->end_row);
 }
 
-void move_checker_do_move(struct move_checker_t * this, int promote, int x1, int y1, int x2, int y2) {
-	bool promotion = move_checker_pawn_promotion(this, x1, y1, y2);
-	bool castled = !((this->board[x1][y1] > 2) || (abs(x1 - x2) < 2));
+void move_checker_do_move(struct move_checker_t * this, int promote, int c1, int r1, int c2, int r2) {
+	bool promotion = move_checker_pawn_promotion(this, c1, r1, r2);
+	bool castled = !((this->board[c1][r1] > 2) || (abs(c1 - c2) < 2));
 	
 	if(this->last_move)
 		free(this->last_move);
 	
-	this->last_move = new_move_coord(x1, y1, x2, y2);
+	this->last_move = new_move_coord(c1, r1, c2, r2);
 	
-	move_checker_set_last_player_moved(this, move_checker_piece_owner(this->board[x1][y1]));
-	move_checker_change_castling_status(this, x1, y1);
+	move_checker_set_last_player_moved(this, move_checker_piece_owner(this->board[c1][r1]));
+	move_checker_change_castling_status(this, c1, r1);
 	
-	this->board[x2][y2] = this->board[x1][y1];
-	this->board[x1][y1] = NONE;
+	this->board[c2][r2] = this->board[c1][r1];
+	this->board[c1][r1] = NONE;
 	
 	if (promotion)
-		this->board[x2][y2] = move_checker_determine_promotion_piece(this, x2, y2, promote);
+		this->board[c2][r2] = move_checker_determine_promotion_piece(this, c2, r2, promote);
 	
 	if (castled)
-		move_checker_handle_castling(this, x1, y1, x2, y2);
+		move_checker_handle_castling(this, c1, r1, c2, r2);
 }
 
-void move_checker_handle_castling(struct move_checker_t * this, int x1, int y1, int x2, int y2) {
-	if(x1 > x2) {
-		this->board[x2 + 1][y2] = this->board[0][y2];
-		this->board[0][y2] = NONE;
+void move_checker_handle_castling(struct move_checker_t * this, int c1, int r1, int c2, int r2) {
+	if(c1 > c2) {
+		this->board[c2 + 1][r2] = this->board[0][r2];
+		this->board[0][r2] = NONE;
 	} else {
-		this->board[x2 - 1][y2] = this->board[5][y2];
-		this->board[5][y2] = 0;
+		this->board[c2 - 1][r2] = this->board[5][r2];
+		this->board[5][r2] = 0;
 	}
 }
 
@@ -395,9 +395,9 @@ bool move_checker_has_legal_move(struct move_checker_t * this, int player) {
 			if(((!move_checker_empty_square(this, x, y))
 					|| (this->board[x][y] != UNDEFINED))
 				&& move_checker_piece_owner_cr(this, x, y) == player)
-				for(int x2 = 0; x2 < 6; x2++)
-					for(int y2 = 0; y2 < 6; y2++)
-						if(move_checker_legal_move(this, 3, x, y, x2, y2))
+				for(int c2 = 0; c2 < 6; c2++)
+					for(int r2 = 0; r2 < 6; r2++)
+						if(move_checker_legal_move(this, 3, x, y, c2, r2))
 							return true;
 		}
 	}
