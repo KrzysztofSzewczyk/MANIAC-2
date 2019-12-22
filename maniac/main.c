@@ -43,7 +43,7 @@ struct los_alamos_t * new_los_alamos(int engine) {
 				putchar('/');
 		}
 		
-		fflush(stdout);
+		putchar('\n');
 		
 		char l[6], len;
 		len = scanf("%5s", l);
